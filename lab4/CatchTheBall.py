@@ -145,7 +145,7 @@ def board(name, score):
                 score_of_player[k - 1] = score
                 name_of_player[k - 1] = name
                 k = k - 1
-            new_board = ''
+        new_board = ''
         for i in range(lenth):
             new_board = new_board + str(name_of_player[i]) + ' ' + str(score_of_player[i]) + '\n'           
     with open('board.txt', 'w') as board:
@@ -172,7 +172,7 @@ while not finished:
                     score = score + 1
                     new_ball(i)
             for i in range(2):
-                if abs(event.pos[0] - x2[i]) <= r2[i] and abs(event.pos[1] - y2[i]) <= r2[i]:
+                if abs(event.pos[0] - r2[i] - x2[i]) <= r2[i] and abs(event.pos[1] - r2[i] - y2[i]) <= r2[i]:
                     score = score + 2
                     new_square(i)
     for i in range(2):
