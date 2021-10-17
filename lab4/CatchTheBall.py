@@ -1,4 +1,5 @@
 import pygame
+import sys
 from pygame.draw import *
 from random import randint
 pygame.init()
@@ -69,7 +70,8 @@ curent_time = [0, 0]
 time_of_motion = [5, 5]
 check2 = [6, 6]
 time = [0, 0]
-
+current_time_of_game = 0
+t = 0
     
 def new_square(a): 
     '''Create a square
@@ -151,6 +153,12 @@ def board(name, score):
     with open('board.txt', 'w') as board:
         board.write(new_board)
         
+        
+def text(s, f, x, y):
+    f1 = pygame.font.Font(None, f)
+    text1 = f1.render(s, True, (225, 225, 225))
+    screen.blit(text1, (x, y))
+        
 
 pygame.display.update()
 clock = pygame.time.Clock()
@@ -193,5 +201,14 @@ while not finished:
     screen.fill(BLACK)
     rect(screen, (255, 255, 255), (50, 50, 1100, 700))
     rect(screen, (0, 0, 0), (51, 51, 1098, 698))
+    text('Score:' + str(score), 20, 10, 10)
+    t = t + 1 #time
+    if t % 2 == 0:
+        current_time_of_game = current_time_of_game + 0.1
+    text('Time:' + str(round(current_time_of_game)), 20, 100, 10)
+    if current_time_of_game // 1 == 10:
+        finished = True
+        with open('board.txt', 'r') as board:
+            print(board.read())        
 
 pygame.quit()
