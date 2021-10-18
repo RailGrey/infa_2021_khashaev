@@ -171,6 +171,7 @@ while not finished:
             finished = True
             print('Your score: ',score)
             board(name, score)
+            print('Board of leaders:')
             with open('board.txt', 'r') as board:
                 print(board.read())
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -205,10 +206,15 @@ while not finished:
     t = t + 1 #time
     if t % 2 == 0:
         current_time_of_game = current_time_of_game + 0.1
-    text('Time:' + str(round(current_time_of_game)), 20, 100, 10)
-    if current_time_of_game // 1 == 10:
+    text('Time:' + str(30 - round(current_time_of_game)), 20, 100, 10)
+    if current_time_of_game // 1 == 30:
         finished = True
+        print('Your score:', score)
+        print('Board of leaders:')
+        board(name, score)
         with open('board.txt', 'r') as board:
-            print(board.read())        
+            print(board.read())
 
 pygame.quit()
+
+wait = input()
